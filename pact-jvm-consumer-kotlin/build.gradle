@@ -1,0 +1,52 @@
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC8"
+    id "com.github.ben-manes.versions" version "0.20.0"
+    id "org.jetbrains.kotlin.jvm" version "1.2.60"
+    id "org.jmailen.kotlinter" version "1.16.0"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    ext {
+        junitJupiterVersion='5.3.0-M1'
+    }
+
+    compile 'au.com.dius:pact-jvm-consumer_2.12:3.5.20'
+
+    testCompile 'org.assertj:assertj-core:3.10.0'
+    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+        allWarningsAsErrors = true
+    }
+}
+
+compileTestKotlin {
+     kotlinOptions {
+        jvmTarget = "1.6"
+        allWarningsAsErrors = true
+    }
+}
+
+kotlinter {
+    ignoreFailures = false
+    indentSize = 4
+    reporters = ['checkstyle', 'plain']
+}
+
+lintKotlin.dependsOn formatKotlin
+assemble.dependsOn lintKotlin
