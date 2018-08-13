@@ -6,6 +6,7 @@ import au.com.dius.pact.consumer.kotlin.dsl.data.KPactResult
 import au.com.dius.pact.consumer.kotlin.dsl.data.WithProviderBlockResult
 import au.com.dius.pact.consumer.kotlin.dsl.transformation.toPact
 
+@KPactMarker
 class TopLevelBlock internal constructor() {
     val consumer: TopLevelSeed = TopLevelSeed()
 

@@ -4,6 +4,7 @@ import au.com.dius.pact.consumer.dsl.PactDslRequestWithPath
 import au.com.dius.pact.consumer.dsl.PactDslResponse
 import au.com.dius.pact.consumer.kotlin.dsl.data.GivenBlockResult
 
+@KPactMarker
 class WithGivenBlock internal constructor() {
     private val givenBlockResults = mutableListOf<GivenBlockResult>()
 

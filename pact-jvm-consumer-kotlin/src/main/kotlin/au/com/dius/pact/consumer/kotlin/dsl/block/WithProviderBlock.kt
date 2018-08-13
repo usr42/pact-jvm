@@ -3,6 +3,7 @@ package au.com.dius.pact.consumer.kotlin.dsl.block
 import au.com.dius.pact.consumer.kotlin.dsl.data.GivenBlockResult
 import au.com.dius.pact.consumer.kotlin.dsl.data.WithProviderBlockResult
 
+@KPactMarker
 class WithProviderBlock internal constructor() {
     private val withProviderBlockResults = mutableListOf<WithProviderBlockResult>()
 
