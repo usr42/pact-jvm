@@ -115,6 +115,142 @@ class KPactTest {
     }
 
     @Test
+    fun testInfixStringExtension() {
+        val pactFromDsl = kPact {
+            "consumer" and "provider" havePact {
+                given providerIsInState GIVEN_STATE_1 then {
+                    whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                        headers(HEADER_NAME, HEADER_VALUE)
+                    } thenRespondWith {
+                        body(BODY)
+                        headers(HEADER_MAP)
+                    }
+
+                    whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith {
+                        body(BODY)
+                        headers(HEADER_MAP)
+                    }
+                }
+
+                given providerIsInState GIVEN_STATE_2 then {
+                    whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                        headers(HEADER_NAME, HEADER_VALUE)
+                    } thenRespondWith {
+                        body(BODY)
+                        headers(HEADER_MAP)
+                    }
+
+                    whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith KPact.EmptyResponse
+                }
+            }
+        }
+
+        assertThat(pactFromDsl).isEqualTo(classicPact)
+    }
+
+    @Test
+    fun testFluentStringExtension() {
+        val pactFromDsl = kPact {
+            "consumer".hasPactWith("provider") {
+                given(GIVEN_STATE_1) {
+                    whenever(REQUEST_DESCRIPTION_1).withPath(PATH) {
+                        headers(HEADER_NAME, HEADER_VALUE)
+                    } thenRespondWith {
+                        body(BODY)
+                        headers(HEADER_MAP)
+                    }
+
+                    whenever(REQUEST_DESCRIPTION_2).withPath(PATH)
+                        .thenRespondWith {
+                            body(BODY)
+                            headers(HEADER_MAP)
+                        }
+                }
+
+                given(GIVEN_STATE_2) {
+                    whenever(REQUEST_DESCRIPTION_1).withPath(PATH) {
+                        headers(HEADER_NAME, HEADER_VALUE)
+                    } thenRespondWith {
+                        body(BODY)
+                        headers(HEADER_MAP)
+                    }
+
+                    whenever(REQUEST_DESCRIPTION_2).withPath(PATH)
+                        .thenRespondWith(KPact.EmptyResponse)
+                }
+            }
+        }
+
+        assertThat(pactFromDsl).isEqualTo(classicPact)
+    }
+
+    @Test
+    fun onlyOneConsumerProviderPerPact() {
+        val pactFromDsl = KPact between CONSUMER_NAME andProvider PROVIDER_NAME isDefinedBy {
+            given providerIsInState GIVEN_STATE_1 then {
+                whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+            }
+
+            given providerIsInState GIVEN_STATE_2 then {
+                whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith KPact.EmptyResponse
+            }
+        }
+
+        assertThat(pactFromDsl).isEqualTo(classicPact)
+    }
+
+    @Test
+    fun onlyOneConsumerProviderPerPactFluent() {
+        val pactFromDsl = KPact.consumer(CONSUMER_NAME).hasPactWith(PROVIDER_NAME) {
+            given(GIVEN_STATE_1) {
+                whenever(REQUEST_DESCRIPTION_1).withPath(PATH) {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever(REQUEST_DESCRIPTION_2).withPath(PATH)
+                    .thenRespondWith {
+                        body(BODY)
+                        headers(HEADER_MAP)
+                    }
+            }
+
+            given(GIVEN_STATE_2) {
+                whenever(REQUEST_DESCRIPTION_1).withPath(PATH) {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever(REQUEST_DESCRIPTION_2).withPath(PATH)
+                    .thenRespondWith(KPact.EmptyResponse)
+            }
+        }
+
+        assertThat(pactFromDsl).isEqualTo(classicPact)
+    }
+
+    @Test
     fun fromPactDslWithProvider() {
         val pactDslWithProvider = ConsumerPactBuilder(CONSUMER_NAME)
             .hasPactWith(PROVIDER_NAME)
