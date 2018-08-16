@@ -41,6 +41,7 @@ asciidoctor {
 
     backends 'html5'
     separateOutputDirs false
+    outputDir "docs"
 
     attributes 'source-highlighter': 'coderay@',
             'tabsize': '4',
