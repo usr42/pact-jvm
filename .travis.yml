@@ -22,4 +22,4 @@ deploy:
   keep-history: true
   local-dir: pact-jvm-consumer-kotlin/build/asciidoc
   on:
-    branch: gh-pages
+    branch: trigger-travis
