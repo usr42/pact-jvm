@@ -34,9 +34,9 @@ asciidoctorj {
 }
 
 asciidoctor {
-    sourceDir "."
+    sourceDir "docs"
     sources {
-        include 'README.adoc'
+        include 'index.adoc'
     }
 
     backends 'html5'

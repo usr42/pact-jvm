@@ -1,12 +1,13 @@
 = kPact - Kotlin idiomatic DSL for Pact
 :p: icon:check[role="green"]
 :n: icon:times[role="red"]
+:exampleDir: ../src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples
 
 == Goals
-* Easy readable
-* Easy writable
+* the resulting Pact should be good readable
+* writing the Pact should be as simple as possible
 * Compile time safety (e.g. force mandatory data to be set)
-* short and concise (no boilerplate)
+* short and concise syntax (no boilerplate)
 * IDE support (e.g. auto-completion)
 * Things belonging to each other are in the same block
 * Things on the same logical level are on the same indentation level (auto-indentation of IDE)
@@ -21,20 +22,20 @@
 [source,java,indent=0,role="primary"]
 .Infix DSL
 ----
-include::src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples/InfixDslExample.kt[lines=11..47]
+include::{exampleDir}/InfixDslExample.kt[lines=11..47]
 ----
 
 [source,java,indent=0,role="secondary"]
 .Fluent DSL
 ----
-include::src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples/FluentDslExample.kt[lines=11..47]
+include::{exampleDir}/FluentDslExample.kt[lines=11..47]
 
 ----
 
 [source,java,indent=0,role="secondary"]
 .ConsumerPactBuilder
 ----
-include::src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples/ConsumerPactBuilderExample.kt[lines=7..43]
+include::{exampleDir}/ConsumerPactBuilderExample.kt[lines=7..43]
 ----
 
 == Usage together with https://github.com/DiUS/pact-jvm/tree/master/pact-jvm-consumer-junit5[pact-jvm-consumer-junit5]
@@ -42,13 +43,13 @@ include::src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples/ConsumerP
 [source,java,indent=0,role="primary"]
 .kPact
 ----
-include::src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples/Junit5Example.kt[lines=14..26]
+include::{exampleDir}/Junit5Example.kt[lines=14..26]
 ----
 
 [source,java,indent=0,role="secondary"]
 .ConsumerPactBuilder
 ----
-include::src/test/kotlin/au/com/dius/pact/consumer/kotlin/dsl/examples/Junit5Example.kt[lines=30..41]
+include::{exampleDir}/Junit5Example.kt[lines=30..41]
 ----
 
 == Open Design Decisions
@@ -75,7 +76,7 @@ KPact between "consumer" andProvider "provider" isDefinedBy {
 }
 ----
 
-==== (Dis-)Advantages
+==== Comparing the different DSL styles
 
 ===== kpact block
 
@@ -137,7 +138,7 @@ consumer("consumer").hasPactWith("provider") {
 "consumer".hasPactWith("provider") {
 ----
 
-==== (Dis-)Advantages
+==== Comparing the different DSL styles
 
 ===== with extension
 
