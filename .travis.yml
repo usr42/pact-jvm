@@ -13,4 +13,13 @@ script:
   - unset _JAVA_OPTIONS
   - env
   - ./gradlew --stacktrace --no-daemon -i check_$SCALA
+  - ./gradlew :pact-jvm-consumer-kotlin:asciidoctor --no-daemon
 install: true
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  local-dir: pact-jvm-consumer-kotlin/build/asciidoc
+  on:
+    branch: gh-pages
