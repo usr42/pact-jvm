@@ -8,6 +8,7 @@ class InfixDslExample {
     @Test
     fun infixDsl() {
         val infixDsl =
+        // tag::infixDSL[]
             KPact between "Some Consumer" andProvider "Some Provider" isDefinedBy {
                 given providerIsInState "a certain state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
@@ -45,6 +46,7 @@ class InfixDslExample {
                     }
                 }
             }
+        // end::infixDSL[]
 
         assertThat(infixDsl).isEqualTo(ConsumerPactBuilderExample.consumerPactBuilderExample)
     }

@@ -22,20 +22,20 @@
 [source,java,indent=0,role="primary"]
 .Infix DSL
 ----
-include::{exampleDir}/InfixDslExample.kt[lines=11..47]
+include::{exampleDir}/InfixDslExample.kt[tags=infixDSL]
 ----
 
 [source,java,indent=0,role="secondary"]
 .Fluent DSL
 ----
-include::{exampleDir}/FluentDslExample.kt[lines=11..47]
+include::{exampleDir}/FluentDslExample.kt[tags=fluentDSL]
 
 ----
 
 [source,java,indent=0,role="secondary"]
 .ConsumerPactBuilder
 ----
-include::{exampleDir}/ConsumerPactBuilderExample.kt[lines=7..43]
+include::{exampleDir}/ConsumerPactBuilderExample.kt[tags=ConsumerPactBuilder]
 ----
 
 == Usage together with https://github.com/DiUS/pact-jvm/tree/master/pact-jvm-consumer-junit5[pact-jvm-consumer-junit5]
@@ -43,13 +43,13 @@ include::{exampleDir}/ConsumerPactBuilderExample.kt[lines=7..43]
 [source,java,indent=0,role="primary"]
 .kPact
 ----
-include::{exampleDir}/Junit5Example.kt[lines=14..26]
+include::{exampleDir}/Junit5Example.kt[tags=kPact]
 ----
 
 [source,java,indent=0,role="secondary"]
 .ConsumerPactBuilder
 ----
-include::{exampleDir}/Junit5Example.kt[lines=30..41]
+include::{exampleDir}/Junit5Example.kt[tags=ConsumerPactBuilder]
 ----
 
 == Open Design Decisions

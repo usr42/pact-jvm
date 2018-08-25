@@ -4,6 +4,7 @@ import au.com.dius.pact.consumer.ConsumerPactBuilder
 
 object ConsumerPactBuilderExample {
     val consumerPactBuilderExample =
+    // tag::ConsumerPactBuilder[]
         ConsumerPactBuilder
             .consumer("Some Consumer")
             .hasPactWith("Some Provider")
@@ -41,4 +42,5 @@ object ConsumerPactBuilderExample {
                         .status(404)
                         .body("{\"hello\": \"harry\"}")
             .toPact()
+    // end::ConsumerPactBuilder[]
 }

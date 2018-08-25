@@ -8,6 +8,7 @@ class FluentDslExample {
     @Test
     fun fluentExample() {
         val fluentExample =
+        // tag::fluentDSL[]
             KPact.consumer("Some Consumer").hasPactWith("Some Provider") {
                 given("a certain state on the provider") {
                     whenever("a request for something").withPath("/hello") {
@@ -45,6 +46,7 @@ class FluentDslExample {
                     }
                 }
             }
+        // end::fluentDSL[]
 
         assertThat(fluentExample).isEqualTo(ConsumerPactBuilderExample.consumerPactBuilderExample)
     }

@@ -11,6 +11,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 private object Junit5DslExample {
+    // tag::kPact[]
     @Pact(provider = "test_provider", consumer = "test_consumer")
     fun createPact(builder: PactDslWithProvider): RequestResponsePact {
         return builder.kPact {
@@ -24,9 +25,11 @@ private object Junit5DslExample {
             }
         }
     }
+    // end::kPact[]
 }
 
 private object Junit5ConsumerPactBuilderExample {
+    // tag::ConsumerPactBuilder[]
     @Pact(provider = "test_provider", consumer = "test_consumer")
     fun createPact(builder: PactDslWithProvider): RequestResponsePact {
         return builder
@@ -39,6 +42,7 @@ private object Junit5ConsumerPactBuilderExample {
                     .body("{\"responsetest\": true}")
             .toPact()
     }
+    // end::ConsumerPactBuilder[]
 }
 
 class Junit5ExampleTest {
