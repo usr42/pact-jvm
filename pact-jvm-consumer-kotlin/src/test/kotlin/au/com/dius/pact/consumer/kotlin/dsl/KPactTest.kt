@@ -46,7 +46,7 @@ class KPactTest {
 
     @Test
     fun testInfix() {
-        val pactFromDsl = KPact between CONSUMER_NAME andProvider PROVIDER_NAME isDefinedBy {
+        val pactFromDsl = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
             given providerIsInState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
@@ -149,7 +149,7 @@ class KPactTest {
 
     @Test
     fun multipleAndBlocks() {
-        val pactWithMultipleAndBlocks = KPact between CONSUMER_NAME andProvider PROVIDER_NAME isDefinedBy {
+        val pactWithMultipleAndBlocks = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
             given providerIsInState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
@@ -162,7 +162,7 @@ class KPactTest {
             }
         }
 
-        val pactWithCombinedAndBlock = KPact between CONSUMER_NAME andProvider PROVIDER_NAME isDefinedBy {
+        val pactWithCombinedAndBlock = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
             given providerIsInState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
@@ -175,5 +175,71 @@ class KPactTest {
         }
 
         assertThat(pactWithMultipleAndBlocks).isEqualTo(pactWithCombinedAndBlock)
+    }
+
+    // Open Design Decisions
+
+    @Test
+    fun infixShortButCamelCase() {
+        val pactFromDsl = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
+            given providerIsInState GIVEN_STATE_1 then {
+                whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+            }
+
+            given providerIsInState GIVEN_STATE_2 then {
+                whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith KPact.EmptyResponse
+            }
+        }
+
+        assertThat(pactFromDsl).isEqualTo(classicPact)
+    }
+
+    @Test
+    fun infixLongerButLikeProse() {
+        val pactFromDsl = KPact between CONSUMER_NAME and1 PROVIDER_NAME defined by {
+            given providerIsInState GIVEN_STATE_1 then {
+                whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+            }
+
+            given providerIsInState GIVEN_STATE_2 then {
+                whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
+                    headers(HEADER_NAME, HEADER_VALUE)
+                } thenRespondWith {
+                    body(BODY)
+                    headers(HEADER_MAP)
+                }
+
+                whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith KPact.EmptyResponse
+            }
+        }
+
+        assertThat(pactFromDsl).isEqualTo(classicPact)
     }
 }

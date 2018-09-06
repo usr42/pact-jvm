@@ -21,7 +21,7 @@ class TopLevelBlock internal constructor() {
     }
 
     class WithConsumer internal constructor(private val consumerName: String) {
-        infix fun andProvider(providerName: String): WithProvider {
+        infix fun and(providerName: String): WithProvider {
             val pactWithProvider = ConsumerPactBuilder(consumerName).hasPactWith(providerName)
             return WithProvider(pactWithProvider)
         }
@@ -30,7 +30,12 @@ class TopLevelBlock internal constructor() {
             providerName: String,
             withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>
         ): RequestResponsePact {
-            return andProvider(providerName).havePact(withProviderBlock)
+            return and(providerName).havePact(withProviderBlock)
+        }
+
+        infix fun and1(providerName: String): WithProvider {
+            val pactWithProvider = ConsumerPactBuilder(consumerName).hasPactWith(providerName)
+            return WithProvider(pactWithProvider)
         }
     }
 
@@ -42,6 +47,10 @@ class TopLevelBlock internal constructor() {
 
         infix fun isDefinedBy(withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>): RequestResponsePact {
             return havePact(withProviderBlock)
+        }
+
+        infix fun defined(toPact: PactDslWithProvider.() -> RequestResponsePact): RequestResponsePact {
+            return pactDslWithProvider.toPact()
         }
     }
 }

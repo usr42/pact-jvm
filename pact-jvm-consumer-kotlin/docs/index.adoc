@@ -51,3 +51,21 @@ include::{exampleDir}/Junit5Example.kt[tags=kPact]
 ----
 include::{exampleDir}/Junit5Example.kt[tags=ConsumerPactBuilder]
 ----
+
+== Open Design Decisions
+
+=== Prose but verbose
+
+[source,java,indent=0,role="primary"]
+.like prose
+----
+include::{exampleDir}/DesignDecisions.kt[tags=proseLike]
+----
+<1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
+
+[source,java,indent=0,role="secondary"]
+.CamelCase
+----
+include::{exampleDir}/DesignDecisions.kt[tags=CamelCase]
+----
+<1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision

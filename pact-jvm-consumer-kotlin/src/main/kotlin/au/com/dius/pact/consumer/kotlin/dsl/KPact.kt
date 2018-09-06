@@ -7,6 +7,7 @@ import au.com.dius.pact.consumer.kotlin.dsl.block.TopLevelBlock
 import au.com.dius.pact.consumer.kotlin.dsl.block.TopLevelBlock.WithProvider
 import au.com.dius.pact.consumer.kotlin.dsl.block.WithProviderBlock
 import au.com.dius.pact.consumer.kotlin.dsl.data.WithProviderBlockResult
+import au.com.dius.pact.consumer.kotlin.dsl.transformation.toPact
 import au.com.dius.pact.model.RequestResponsePact
 
 fun PactDslWithProvider.kPact(function: WithProviderBlock.() -> List<WithProviderBlockResult>): RequestResponsePact {
@@ -23,5 +24,14 @@ object KPact {
 
     fun consumer(consumer: String): TopLevelBlock.WithConsumer {
         return TopLevelBlock().consumer.withName(consumer)
+    }
+}
+
+object by {
+    operator fun invoke(withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>): PactDslWithProvider.() -> RequestResponsePact {
+        val fromProviderToResult = WithProviderBlock().withProviderBlock()
+        return {
+            toPact(fromProviderToResult)
+        }
     }
 }
