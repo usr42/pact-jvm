@@ -9,11 +9,6 @@ import au.com.dius.pact.consumer.kotlin.dsl.block.WithProviderBlock
 import au.com.dius.pact.consumer.kotlin.dsl.data.WithProviderBlockResult
 import au.com.dius.pact.model.RequestResponsePact
 
-fun kPact(lambda: TopLevelBlock.() -> RequestResponsePact): RequestResponsePact {
-    val mainBlock = TopLevelBlock()
-    return mainBlock.lambda()
-}
-
 fun PactDslWithProvider.kPact(function: WithProviderBlock.() -> List<WithProviderBlockResult>): RequestResponsePact {
     return WithProvider(this).havePact(function)
 }

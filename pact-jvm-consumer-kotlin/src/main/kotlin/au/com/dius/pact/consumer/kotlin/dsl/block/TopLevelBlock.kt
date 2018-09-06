@@ -10,17 +10,6 @@ import au.com.dius.pact.model.RequestResponsePact
 class TopLevelBlock internal constructor() {
     val consumer: TopLevelSeed = TopLevelSeed()
 
-    infix fun String.and(providerName: String): WithProvider {
-        return consumer(this).andProvider(providerName)
-    }
-
-    fun String.hasPactWith(
-        providerName: String,
-        withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>
-    ): RequestResponsePact {
-        return consumer(this).hasPactWith(providerName, withProviderBlock)
-    }
-
     fun consumer(consumer: String): WithConsumer {
         return this.consumer.withName(consumer)
     }
