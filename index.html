@@ -608,8 +608,7 @@ $(addBlockSwitches);
 <li><a href="#usage-together-with-a-href-https-github-com-dius-pact-jvm-tree-master-pact-jvm-consumer-junit5-pact-jvm-consumer-junit5-a">Usage together with <a href="https://github.com/DiUS/pact-jvm/tree/master/pact-jvm-consumer-junit5">pact-jvm-consumer-junit5</a></a></li>
 <li><a href="#open-design-decisions">Open Design Decisions</a>
 <ul class="sectlevel2">
-<li><a href="#kpact-block-vs-enforcing-single-consumer-provider-pair">kPact block VS enforcing single Consumer/Provider pair</a></li>
-<li><a href="#string-extension-function">String extension function</a></li>
+<li><a href="#prose-but-verbose">Prose but verbose</a></li>
 </ul>
 </li>
 </ul>
@@ -669,7 +668,7 @@ $(addBlockSwitches);
 <div class="listingblock primary">
 <div class="title">Infix DSL</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> andProvider <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy {
+<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy {
     given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {
         whenever receiving <span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span> withPath <span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span> and {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
@@ -838,132 +837,36 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 <h2 id="open-design-decisions"><a class="anchor" href="#open-design-decisions"></a>Open Design Decisions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="kpact-block-vs-enforcing-single-consumer-provider-pair"><a class="anchor" href="#kpact-block-vs-enforcing-single-consumer-provider-pair"></a>kPact block VS enforcing single Consumer/Provider pair</h3>
-<div class="sect3">
-<h4 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h4>
+<h3 id="prose-but-verbose"><a class="anchor" href="#prose-but-verbose"></a>Prose but verbose</h3>
 <div class="listingblock primary">
-<div class="title">kpact block example</div>
+<div class="title">like prose</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">kPact {
-    consumer withName <span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span> andProvider <span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span> havePact {
-        <span class="comment">// ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">enforcing single Consumer/Provider pair example</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span> andProvider <span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span> isDefinedBy {
-    <span class="comment">// ...</span>
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="comparing-the-different-dsl-styles"><a class="anchor" href="#comparing-the-different-dsl-styles"></a>Comparing the different DSL styles</h4>
-<div class="sect4">
-<h5 id="kpact-block"><a class="anchor" href="#kpact-block"></a>kpact block</h5>
-<div class="paragraph">
-<p><span class="icon red"><i class="fa fa-times"></i></span>
-  <strong>compile time safety</strong> / unexpected and inconsistent behavior:<br>
-  Multiple consumer/provider blocks are not prevented by compiler but
-  only last one would be used:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">kPact {
-    consumer withName <span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span> andProvider <span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span> havePact { <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="comment">// ...</span>
-    }
-
-    consumer withName <span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span> andProvider <span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span> havePact {
-        <span class="comment">// ...</span>
-    }
-}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and1 <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> defined by { <i class="conum" data-value="1"></i><b>(1)</b>
+    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This <code>consumer</code> block is not used at all</td>
+<td><code>and1</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check"></i></span>
-  Indicates clearer, that the block defines a (k)Pact</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="enforcing-single-pair"><a class="anchor" href="#enforcing-single-pair"></a>enforcing single pair</h5>
-<div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check"></i></span>
-  one indentation level less</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="string-extension-function"><a class="anchor" href="#string-extension-function"></a>String extension function</h3>
-<div class="sect3">
-<h4 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h4>
-<div class="sect4">
-<h5 id="without-string-extension"><a class="anchor" href="#without-string-extension"></a>without String extension</h5>
-<div class="listingblock primary">
-<div class="title">infix</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">consumer withName <span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span> andProvider <span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span> havePact {</code></pre>
-</div>
-</div>
 <div class="listingblock secondary">
-<div class="title">fluent</div>
+<div class="title">CamelCase</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">consumer(<span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span>).hasPactWith(<span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span>) {</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy { <i class="conum" data-value="1"></i><b>(1)</b>
+    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="with-string-extension"><a class="anchor" href="#with-string-extension"></a>with String extension</h5>
-<div class="listingblock primary">
-<div class="title">infix</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span> havePact {</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">fluent</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="string"><span class="delimiter">&quot;</span><span class="content">consumer</span><span class="delimiter">&quot;</span></span>.hasPactWith(<span class="string"><span class="delimiter">&quot;</span><span class="content">provider</span><span class="delimiter">&quot;</span></span>) {</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="comparing-the-different-dsl-styles-2"><a class="anchor" href="#comparing-the-different-dsl-styles-2"></a>Comparing the different DSL styles</h4>
-<div class="sect4">
-<h5 id="with-extension"><a class="anchor" href="#with-extension"></a>with extension</h5>
-<div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check"></i></span>
-  shorter and more concise</p>
-</div>
-<div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check"></i></span>
-  <strong>infix syntax</strong> is nearer to prose</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="without-extension"><a class="anchor" href="#without-extension"></a>without extension</h5>
-<div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check"></i></span>
-  better IDE auto-completion</p>
-</div>
-<div class="paragraph">
-<p><span class="icon green"><i class="fa fa-check"></i></span>
-  <strong>fluent interface</strong> feels more natural without String extension (opinion)</p>
-</div>
-</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>and1</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -971,7 +874,7 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-25 22:19:44 UTC
+Last updated 2018-09-06 21:53:50 UTC
 </div>
 </div>
 </body>
