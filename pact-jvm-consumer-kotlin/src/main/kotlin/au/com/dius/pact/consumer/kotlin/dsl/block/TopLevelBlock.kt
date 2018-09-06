@@ -37,6 +37,10 @@ class TopLevelBlock internal constructor() {
             val pactWithProvider = ConsumerPactBuilder(consumerName).hasPactWith(providerName)
             return WithProvider(pactWithProvider)
         }
+
+        infix fun and2(toPact: ConsumerPactBuilder.() -> RequestResponsePact): RequestResponsePact {
+            return ConsumerPactBuilder(consumerName).toPact()
+        }
     }
 
     class WithProvider internal constructor(private val pactDslWithProvider: PactDslWithProvider) {

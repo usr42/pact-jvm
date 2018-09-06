@@ -1,5 +1,6 @@
 package au.com.dius.pact.consumer.kotlin.dsl
 
+import au.com.dius.pact.consumer.ConsumerPactBuilder
 import au.com.dius.pact.consumer.dsl.PactDslRequestWithPath
 import au.com.dius.pact.consumer.dsl.PactDslResponse
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider
@@ -33,5 +34,12 @@ object by {
         return {
             toPact(fromProviderToResult)
         }
+    }
+}
+
+operator fun String.invoke(withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>): ConsumerPactBuilder.() -> RequestResponsePact {
+    val fromProviderToResult = WithProviderBlock().withProviderBlock()
+    return {
+        hasPactWith(this@invoke).toPact(fromProviderToResult)
     }
 }

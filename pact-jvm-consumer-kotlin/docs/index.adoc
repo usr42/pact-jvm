@@ -54,9 +54,16 @@ include::{exampleDir}/Junit5Example.kt[tags=ConsumerPactBuilder]
 
 == Open Design Decisions
 
-=== Prose but verbose
+=== infix: Prose or CamelCase
 
 [source,java,indent=0,role="primary"]
+.CamelCase
+----
+include::{exampleDir}/DesignDecisions.kt[tags=CamelCase]
+----
+<1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
+
+[source,java,indent=0,role="secondary"]
 .like prose
 ----
 include::{exampleDir}/DesignDecisions.kt[tags=proseLike]
@@ -64,8 +71,8 @@ include::{exampleDir}/DesignDecisions.kt[tags=proseLike]
 <1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
 
 [source,java,indent=0,role="secondary"]
-.CamelCase
+.like prose shorter
 ----
-include::{exampleDir}/DesignDecisions.kt[tags=CamelCase]
+include::{exampleDir}/DesignDecisions.kt[tags=proseLikeShorter]
 ----
-<1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
+<1> `and2` will be named just `and` but before the decision is made, this would lead to a name collision
