@@ -10,17 +10,6 @@ import au.com.dius.pact.model.RequestResponsePact
 class TopLevelBlock internal constructor() {
     val consumer: TopLevelSeed = TopLevelSeed()
 
-    infix fun String.and(providerName: String): WithProvider {
-        return consumer(this).andProvider(providerName)
-    }
-
-    fun String.hasPactWith(
-        providerName: String,
-        withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>
-    ): RequestResponsePact {
-        return consumer(this).hasPactWith(providerName, withProviderBlock)
-    }
-
     fun consumer(consumer: String): WithConsumer {
         return this.consumer.withName(consumer)
     }
@@ -32,7 +21,7 @@ class TopLevelBlock internal constructor() {
     }
 
     class WithConsumer internal constructor(private val consumerName: String) {
-        infix fun andProvider(providerName: String): WithProvider {
+        infix fun and(providerName: String): WithProvider {
             val pactWithProvider = ConsumerPactBuilder(consumerName).hasPactWith(providerName)
             return WithProvider(pactWithProvider)
         }
@@ -41,7 +30,16 @@ class TopLevelBlock internal constructor() {
             providerName: String,
             withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>
         ): RequestResponsePact {
-            return andProvider(providerName).havePact(withProviderBlock)
+            return and(providerName).havePact(withProviderBlock)
+        }
+
+        infix fun and1(providerName: String): WithProvider {
+            val pactWithProvider = ConsumerPactBuilder(consumerName).hasPactWith(providerName)
+            return WithProvider(pactWithProvider)
+        }
+
+        infix fun and2(toPact: ConsumerPactBuilder.() -> RequestResponsePact): RequestResponsePact {
+            return ConsumerPactBuilder(consumerName).toPact()
         }
     }
 
@@ -53,6 +51,10 @@ class TopLevelBlock internal constructor() {
 
         infix fun isDefinedBy(withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>): RequestResponsePact {
             return havePact(withProviderBlock)
+        }
+
+        infix fun defined(toPact: PactDslWithProvider.() -> RequestResponsePact): RequestResponsePact {
+            return pactDslWithProvider.toPact()
         }
     }
 }

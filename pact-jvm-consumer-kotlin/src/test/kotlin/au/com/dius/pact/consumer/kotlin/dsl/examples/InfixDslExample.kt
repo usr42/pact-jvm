@@ -9,7 +9,7 @@ class InfixDslExample {
     fun infixDsl() {
         val infixDsl =
         // tag::infixDSL[]
-            KPact between "Some Consumer" andProvider "Some Provider" isDefinedBy {
+            KPact between "Some Consumer" and "Some Provider" isDefinedBy {
                 given providerIsInState "a certain state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
