@@ -608,7 +608,7 @@ $(addBlockSwitches);
 <li><a href="#usage-together-with-a-href-https-github-com-dius-pact-jvm-tree-master-pact-jvm-consumer-junit5-pact-jvm-consumer-junit5-a">Usage together with <a href="https://github.com/DiUS/pact-jvm/tree/master/pact-jvm-consumer-junit5">pact-jvm-consumer-junit5</a></a></li>
 <li><a href="#open-design-decisions">Open Design Decisions</a>
 <ul class="sectlevel2">
-<li><a href="#prose-but-verbose">Prose but verbose</a></li>
+<li><a href="#infix-prose-or-camelcase">infix: Prose or CamelCase</a></li>
 </ul>
 </li>
 </ul>
@@ -837,8 +837,23 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 <h2 id="open-design-decisions"><a class="anchor" href="#open-design-decisions"></a>Open Design Decisions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prose-but-verbose"><a class="anchor" href="#prose-but-verbose"></a>Prose but verbose</h3>
+<h3 id="infix-prose-or-camelcase"><a class="anchor" href="#infix-prose-or-camelcase"></a>infix: Prose or CamelCase</h3>
 <div class="listingblock primary">
+<div class="title">CamelCase</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy { <i class="conum" data-value="1"></i><b>(1)</b>
+    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>and1</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
 <div class="title">like prose</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and1 <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> defined by { <i class="conum" data-value="1"></i><b>(1)</b>
@@ -854,9 +869,9 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 </table>
 </div>
 <div class="listingblock secondary">
-<div class="title">CamelCase</div>
+<div class="title">like prose shorter</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy { <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and2 <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> { <i class="conum" data-value="1"></i><b>(1)</b>
     given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
 </div>
 </div>
@@ -864,7 +879,7 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>and1</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
+<td><code>and2</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
 </tr>
 </table>
 </div>
@@ -874,7 +889,7 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-06 21:49:06 UTC
+Last updated 2018-09-06 22:18:14 UTC
 </div>
 </div>
 </body>
