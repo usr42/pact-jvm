@@ -75,4 +75,4 @@ include::{exampleDir}/DesignDecisions.kt[tags=proseLike]
 ----
 include::{exampleDir}/DesignDecisions.kt[tags=proseLikeShorter]
 ----
-<1> `and2` will be named just `and` but before the decision is made, this would lead to a name collision
+<1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision

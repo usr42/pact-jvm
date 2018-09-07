@@ -47,7 +47,7 @@ class KPactTest {
     @Test
     fun testInfix() {
         val pactFromDsl = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
-            given providerIsInState GIVEN_STATE_1 then {
+            given providerState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } thenRespondWith {
@@ -61,7 +61,7 @@ class KPactTest {
                 }
             }
 
-            given providerIsInState GIVEN_STATE_2 then {
+            given providerState GIVEN_STATE_2 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } thenRespondWith {
@@ -150,7 +150,7 @@ class KPactTest {
     @Test
     fun multipleAndBlocks() {
         val pactWithMultipleAndBlocks = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
-            given providerIsInState GIVEN_STATE_1 then {
+            given providerState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } and {
@@ -163,7 +163,7 @@ class KPactTest {
         }
 
         val pactWithCombinedAndBlock = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
-            given providerIsInState GIVEN_STATE_1 then {
+            given providerState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                     body(BODY)
@@ -182,7 +182,7 @@ class KPactTest {
     @Test
     fun infixShortButCamelCase() {
         val pactFromDsl = KPact between CONSUMER_NAME and PROVIDER_NAME isDefinedBy {
-            given providerIsInState GIVEN_STATE_1 then {
+            given providerState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } thenRespondWith {
@@ -196,7 +196,7 @@ class KPactTest {
                 }
             }
 
-            given providerIsInState GIVEN_STATE_2 then {
+            given providerState GIVEN_STATE_2 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } thenRespondWith {
@@ -214,7 +214,7 @@ class KPactTest {
     @Test
     fun infixLongerButLikeProse() {
         val pactFromDsl = KPact between CONSUMER_NAME and1 PROVIDER_NAME defined by {
-            given providerIsInState GIVEN_STATE_1 then {
+            given providerState GIVEN_STATE_1 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } thenRespondWith {
@@ -228,7 +228,7 @@ class KPactTest {
                 }
             }
 
-            given providerIsInState GIVEN_STATE_2 then {
+            given providerState GIVEN_STATE_2 then {
                 whenever receiving REQUEST_DESCRIPTION_1 withPath PATH and {
                     headers(HEADER_NAME, HEADER_VALUE)
                 } thenRespondWith {

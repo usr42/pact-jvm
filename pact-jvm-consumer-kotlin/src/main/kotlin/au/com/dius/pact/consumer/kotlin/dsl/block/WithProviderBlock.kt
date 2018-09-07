@@ -13,12 +13,18 @@ class WithProviderBlock internal constructor() {
         providerState: String,
         withGivenBlock: WithGivenBlock.() -> List<GivenBlockResult>
     ): List<WithProviderBlockResult> {
-        return given.providerIsInState(providerState).then(withGivenBlock)
+        return given.providerState(providerState).then(withGivenBlock)
     }
 
     inner class WithProviderSeed internal constructor() {
-        infix fun providerIsInState(providerState: String): WithState {
+        infix fun providerState(providerState: String): WithState {
             return WithState(providerState)
+        }
+
+        infix fun providerState(toWithProviderBlockResult: WithGivenBlock.() -> WithProviderBlockResult): List<WithProviderBlockResult> {
+            val withProviderBlockResult = WithGivenBlock().toWithProviderBlockResult()
+            withProviderBlockResults += withProviderBlockResult
+            return withProviderBlockResults
         }
     }
 
@@ -27,6 +33,13 @@ class WithProviderBlock internal constructor() {
             val withGivenBlocks = WithGivenBlock().withGivenBlock()
             withProviderBlockResults += WithProviderBlockResult(providerState, withGivenBlocks)
             return withProviderBlockResults
+        }
+    }
+
+    operator fun String.invoke(withGivenBlock: WithGivenBlock.() -> List<GivenBlockResult>): WithGivenBlock.() -> WithProviderBlockResult {
+        return {
+            val list = withGivenBlock()
+            WithProviderBlockResult(this@invoke, list)
         }
     }
 }

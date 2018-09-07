@@ -31,6 +31,11 @@ class WithGivenBlock internal constructor() {
         ): WithPath {
             return withPath(path).and(requestDetailFunction)
         }
+
+        infix fun withPath(pair: Pair<String, PactDslRequestWithPath.() -> PactDslRequestWithPath>): WithPath {
+            val (path, requestDetailFunction) = pair
+            return withPath(path).and(requestDetailFunction)
+        }
     }
 
     inner class WithPath internal constructor(
@@ -60,5 +65,9 @@ class WithGivenBlock internal constructor() {
             givenBlockResults += result
             return givenBlockResults
         }
+    }
+
+    operator fun String.invoke(function: PactDslRequestWithPath.() -> PactDslRequestWithPath): Pair<String, PactDslRequestWithPath.() -> PactDslRequestWithPath> {
+        return this to function
     }
 }

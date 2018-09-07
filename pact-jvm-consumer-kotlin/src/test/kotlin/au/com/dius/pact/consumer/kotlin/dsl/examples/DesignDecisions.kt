@@ -12,11 +12,11 @@ class DesignDecisions {
         val infixDsl =
         // tag::proseLike[]
             KPact between "Some Consumer" and1 "Some Provider" defined by { // <1>
-                given providerIsInState "a certain state on the provider" then {
-                    // end::proseLike[]
+                given providerState "a certain state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
+                        // end::proseLike[]
                     } thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
@@ -31,7 +31,7 @@ class DesignDecisions {
                     }
                 }
 
-                given providerIsInState "other state on the provider" then {
+                given providerState "other state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
@@ -57,18 +57,18 @@ class DesignDecisions {
     fun proseLikeShorter() {
         val infixDsl =
         // tag::proseLikeShorter[]
-            KPact between "Some Consumer" and2 "Some Provider" { // <1>
-                given providerIsInState "a certain state on the provider" then {
-                    // end::proseLikeShorter[]
-                    whenever receiving "a request for something" withPath "/hello" and {
+            KPact between "Some Consumer" and "Some Provider" { // <1>
+                given providerState "a certain state on the provider" {
+                    whenever receiving "a request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
+                        // end::proseLikeShorter[]
                     } thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
 
-                    whenever receiving "another request for something" withPath "/hello" and {
+                    whenever receiving "another request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
                     } thenRespondWith {
@@ -77,8 +77,8 @@ class DesignDecisions {
                     }
                 }
 
-                given providerIsInState "other state on the provider" then {
-                    whenever receiving "a request for something" withPath "/hello" and {
+                given providerState "other state on the provider" {
+                    whenever receiving "a request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
                     } thenRespondWith {
@@ -86,7 +86,7 @@ class DesignDecisions {
                         body("{\"hello\": \"harry\"}")
                     }
 
-                    whenever receiving "another request for something" withPath "/hello" and {
+                    whenever receiving "another request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
                     } thenRespondWith {
@@ -104,11 +104,11 @@ class DesignDecisions {
         val infixDsl =
         // tag::CamelCase[]
             KPact between "Some Consumer" and "Some Provider" isDefinedBy { // <1>
-                given providerIsInState "a certain state on the provider" then {
-                    // end::CamelCase[]
+                given providerState "a certain state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
+                        // end::CamelCase[]
                     } thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
@@ -123,7 +123,7 @@ class DesignDecisions {
                     }
                 }
 
-                given providerIsInState "other state on the provider" then {
+                given providerState "other state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
