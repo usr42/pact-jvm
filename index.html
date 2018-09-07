@@ -715,7 +715,7 @@ $(addBlockSwitches);
         whenever(<span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span>).withPath(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>) {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
-        } thenRespondWith {
+        }.thenRespondWith {
             status(<span class="integer">200</span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">hello</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
         }
@@ -723,7 +723,7 @@ $(addBlockSwitches);
         whenever(<span class="string"><span class="delimiter">&quot;</span><span class="content">another request for something</span><span class="delimiter">&quot;</span></span>).withPath(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>) {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
-        } thenRespondWith {
+        }.thenRespondWith {
             status(<span class="integer">200</span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">hello</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
         }
@@ -733,7 +733,7 @@ $(addBlockSwitches);
         whenever(<span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span>).withPath(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>) {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
-        } thenRespondWith {
+        }.thenRespondWith {
             status(<span class="integer">404</span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">hello</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
         }
@@ -741,7 +741,7 @@ $(addBlockSwitches);
         whenever(<span class="string"><span class="delimiter">&quot;</span><span class="content">another request for something</span><span class="delimiter">&quot;</span></span>).withPath(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>) {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
-        } thenRespondWith {
+        }.thenRespondWith {
             status(<span class="integer">404</span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">hello</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
         }
@@ -964,7 +964,7 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-07 20:16:15 UTC
+Last updated 2018-09-07 20:40:08 UTC
 </div>
 </div>
 </body>
