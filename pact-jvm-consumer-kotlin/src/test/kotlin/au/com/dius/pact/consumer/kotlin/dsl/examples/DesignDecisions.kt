@@ -3,6 +3,7 @@ package au.com.dius.pact.consumer.kotlin.dsl.examples
 import au.com.dius.pact.consumer.kotlin.dsl.KPact
 import au.com.dius.pact.consumer.kotlin.dsl.by
 import au.com.dius.pact.consumer.kotlin.dsl.invoke
+import au.com.dius.pact.consumer.kotlin.dsl.respond
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -16,11 +17,11 @@ class DesignDecisions {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                        // end::proseLike[]
                     } thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
+                    // end::proseLike[]
 
                     whenever receiving "another request for something" withPath "/hello" and {
                         method("POST")
@@ -62,16 +63,16 @@ class DesignDecisions {
                     whenever receiving "a request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                        // end::proseLikeShorter[]
-                    } thenRespondWith {
+                    } then respond with {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
+                    // end::proseLikeShorter[]
 
                     whenever receiving "another request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -81,7 +82,7 @@ class DesignDecisions {
                     whenever receiving "a request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with {
                         status(404)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -89,7 +90,7 @@ class DesignDecisions {
                     whenever receiving "another request for something" withPath "/hello" {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with {
                         status(404)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -108,11 +109,11 @@ class DesignDecisions {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                        // end::CamelCase[]
                     } thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
+                    // end::CamelCase[]
 
                     whenever receiving "another request for something" withPath "/hello" and {
                         method("POST")
