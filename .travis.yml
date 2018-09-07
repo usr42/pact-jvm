@@ -6,20 +6,15 @@ addons:
       - oracle-java8-installer
 jdk:
   - oraclejdk8
-env:
-  - SCALA=2.12 JAVA_OPTS="-Xmx512m" GRADLE_OPTS="-Xms128m"
-  - SCALA=nonscala JAVA_OPTS="-Xmx512m" GRADLE_OPTS="-Xms128m"
 script:
-  - unset _JAVA_OPTIONS
-  - env
-  - ./gradlew --stacktrace --no-daemon -i check_$SCALA
   - ./gradlew :pact-jvm-consumer-kotlin:asciidoctor --no-daemon
 install: true
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github-token: $GITHUB_TOKEN
   keep-history: true
   local-dir: pact-jvm-consumer-kotlin/build/asciidoc
   on:
-    branch: trigger-travis
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^trigger-travis.*$
