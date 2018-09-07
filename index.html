@@ -669,7 +669,7 @@ $(addBlockSwitches);
 <div class="title">Infix DSL</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy {
-    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {
+    given providerState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {
         whenever receiving <span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span> withPath <span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span> and {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
@@ -687,7 +687,7 @@ $(addBlockSwitches);
         }
     }
 
-    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">other state on the provider</span><span class="delimiter">&quot;</span></span> then {
+    given providerState <span class="string"><span class="delimiter">&quot;</span><span class="content">other state on the provider</span><span class="delimiter">&quot;</span></span> then {
         whenever receiving <span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span> withPath <span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span> and {
             method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
             body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)
@@ -842,7 +842,10 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 <div class="title">CamelCase</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> isDefinedBy { <i class="conum" data-value="1"></i><b>(1)</b>
-    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
+    given providerState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {
+        whenever receiving <span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span> withPath <span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span> and {
+            method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
+            body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -857,7 +860,10 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 <div class="title">like prose</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and1 <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> defined by { <i class="conum" data-value="1"></i><b>(1)</b>
-    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
+    given providerState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {
+        whenever receiving <span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span> withPath <span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span> and {
+            method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
+            body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -871,15 +877,18 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 <div class="listingblock secondary">
 <div class="title">like prose shorter</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and2 <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> { <i class="conum" data-value="1"></i><b>(1)</b>
-    given providerIsInState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> then {</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java">KPact between <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Consumer</span><span class="delimiter">&quot;</span></span> and <span class="string"><span class="delimiter">&quot;</span><span class="content">Some Provider</span><span class="delimiter">&quot;</span></span> { <i class="conum" data-value="1"></i><b>(1)</b>
+    given providerState <span class="string"><span class="delimiter">&quot;</span><span class="content">a certain state on the provider</span><span class="delimiter">&quot;</span></span> {
+        whenever receiving <span class="string"><span class="delimiter">&quot;</span><span class="content">a request for something</span><span class="delimiter">&quot;</span></span> withPath <span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span> {
+            method(<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span>)
+            body(<span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="char">\&quot;</span><span class="content">name</span><span class="char">\&quot;</span><span class="content">: </span><span class="char">\&quot;</span><span class="content">harry</span><span class="char">\&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>and2</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
+<td><code>and1</code> will be named just <code>and</code> but before the decision is made, this would lead to a name collision</td>
 </tr>
 </table>
 </div>
@@ -889,7 +898,7 @@ fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-07 10:43:37 UTC
+Last updated 2018-09-07 19:34:39 UTC
 </div>
 </div>
 </body>
