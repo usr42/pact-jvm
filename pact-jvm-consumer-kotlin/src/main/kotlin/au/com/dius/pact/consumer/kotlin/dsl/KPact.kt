@@ -37,6 +37,8 @@ object by {
     }
 }
 
+object respond
+
 operator fun String.invoke(withProviderBlock: WithProviderBlock.() -> List<WithProviderBlockResult>): ConsumerPactBuilder.() -> RequestResponsePact {
     val fromProviderToResult = WithProviderBlock().withProviderBlock()
     return {

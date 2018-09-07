@@ -3,6 +3,7 @@ package au.com.dius.pact.consumer.kotlin.dsl.block
 import au.com.dius.pact.consumer.dsl.PactDslRequestWithPath
 import au.com.dius.pact.consumer.dsl.PactDslResponse
 import au.com.dius.pact.consumer.kotlin.dsl.data.GivenBlockResult
+import au.com.dius.pact.consumer.kotlin.dsl.respond
 
 @KPactMarker
 class WithGivenBlock internal constructor() {
@@ -65,9 +66,19 @@ class WithGivenBlock internal constructor() {
             givenBlockResults += result
             return givenBlockResults
         }
+
+        infix fun then(@Suppress("UNUSED_PARAMETER") x: respond): RespondWrapper {
+            return RespondWrapper(this)
+        }
     }
 
     operator fun String.invoke(function: PactDslRequestWithPath.() -> PactDslRequestWithPath): Pair<String, PactDslRequestWithPath.() -> PactDslRequestWithPath> {
         return this to function
+    }
+}
+
+class RespondWrapper(private val withPath: WithGivenBlock.WithPath) {
+    infix fun with(responseDetails: PactDslResponse.() -> PactDslResponse): List<GivenBlockResult> {
+        return withPath.thenRespondWith(responseDetails)
     }
 }
