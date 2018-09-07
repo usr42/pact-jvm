@@ -10,7 +10,7 @@ class InfixDslExample {
         val infixDsl =
         // tag::infixDSL[]
             KPact between "Some Consumer" and "Some Provider" isDefinedBy {
-                given providerIsInState "a certain state on the provider" then {
+                given providerState "a certain state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
@@ -28,7 +28,7 @@ class InfixDslExample {
                     }
                 }
 
-                given providerIsInState "other state on the provider" then {
+                given providerState "other state on the provider" then {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")

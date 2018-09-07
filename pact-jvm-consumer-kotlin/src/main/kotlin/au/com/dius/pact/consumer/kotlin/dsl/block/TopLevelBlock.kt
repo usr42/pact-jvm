@@ -38,7 +38,7 @@ class TopLevelBlock internal constructor() {
             return WithProvider(pactWithProvider)
         }
 
-        infix fun and2(toPact: ConsumerPactBuilder.() -> RequestResponsePact): RequestResponsePact {
+        infix fun and(toPact: ConsumerPactBuilder.() -> RequestResponsePact): RequestResponsePact {
             return ConsumerPactBuilder(consumerName).toPact()
         }
     }

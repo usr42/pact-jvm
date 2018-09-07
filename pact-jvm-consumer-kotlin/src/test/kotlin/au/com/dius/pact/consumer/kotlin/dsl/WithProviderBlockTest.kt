@@ -15,7 +15,7 @@ class WithProviderBlockTest {
     @Test
     fun withProviderBlock() {
         val withProviderBlock = WithProviderBlock()
-        val actual = withProviderBlock.given providerIsInState GIVEN_STATE_1 then {
+        val actual = withProviderBlock.given providerState GIVEN_STATE_1 then {
             whenever receiving REQUEST_DESCRIPTION_1 withPath PATH thenRespondWith KPact.EmptyResponse
         }
 
@@ -37,10 +37,10 @@ class WithProviderBlockTest {
     @Test
     fun withProviderBlockTwoGiven() {
         val withProviderBlock = WithProviderBlock()
-        withProviderBlock.given providerIsInState GIVEN_STATE_1 then {
+        withProviderBlock.given providerState GIVEN_STATE_1 then {
             whenever receiving REQUEST_DESCRIPTION_1 withPath PATH thenRespondWith KPact.EmptyResponse
         }
-        val actual = withProviderBlock.given providerIsInState GIVEN_STATE_2 then {
+        val actual = withProviderBlock.given providerState GIVEN_STATE_2 then {
             whenever receiving REQUEST_DESCRIPTION_2 withPath PATH thenRespondWith KPact.EmptyResponse
         }
 
