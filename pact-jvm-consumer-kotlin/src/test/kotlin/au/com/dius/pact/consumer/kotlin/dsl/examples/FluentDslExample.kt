@@ -14,7 +14,7 @@ class FluentDslExample {
                     whenever("a request for something").withPath("/hello") {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    }.thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -22,7 +22,7 @@ class FluentDslExample {
                     whenever("another request for something").withPath("/hello") {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    }.thenRespondWith {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -32,7 +32,7 @@ class FluentDslExample {
                     whenever("a request for something").withPath("/hello") {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    }.thenRespondWith {
                         status(404)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -40,7 +40,7 @@ class FluentDslExample {
                     whenever("another request for something").withPath("/hello") {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    }.thenRespondWith {
                         status(404)
                         body("{\"hello\": \"harry\"}")
                     }
