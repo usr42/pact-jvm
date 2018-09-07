@@ -12,12 +12,12 @@ class DesignDecisions {
     fun proseLike() {
         val infixDsl =
         // tag::proseLike[]
-            KPact between "Some Consumer" and1 "Some Provider" defined by { // <1>
-                given providerState "a certain state on the provider" then {
-                    whenever receiving "a request for something" withPath "/hello" and {
+            KPact between "Some Consumer" and1 "Some Provider" defined by { // <1> <2>
+                given providerState "a certain state on the provider" then { // <3>
+                    whenever receiving "a request for something" withPath "/hello" and { // <4>
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with { // <5>
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -26,7 +26,7 @@ class DesignDecisions {
                     whenever receiving "another request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with {
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -36,7 +36,7 @@ class DesignDecisions {
                     whenever receiving "a request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with {
                         status(404)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -44,7 +44,7 @@ class DesignDecisions {
                     whenever receiving "another request for something" withPath "/hello" and {
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } then respond with {
                         status(404)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -58,12 +58,12 @@ class DesignDecisions {
     fun proseLikeShorter() {
         val infixDsl =
         // tag::proseLikeShorter[]
-            KPact between "Some Consumer" and "Some Provider" { // <1>
-                given providerState "a certain state on the provider" {
-                    whenever receiving "a request for something" withPath "/hello" {
+            KPact between "Some Consumer" and "Some Provider" { // <1> <2>
+                given providerState "a certain state on the provider" { // <3>
+                    whenever receiving "a request for something" withPath "/hello" { // <4>
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } then respond with {
+                    } then respond with { // <5>
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
@@ -104,12 +104,12 @@ class DesignDecisions {
     fun infixDsl() {
         val infixDsl =
         // tag::CamelCase[]
-            KPact between "Some Consumer" and "Some Provider" isDefinedBy { // <1>
-                given providerState "a certain state on the provider" then {
-                    whenever receiving "a request for something" withPath "/hello" and {
+            KPact between "Some Consumer" and "Some Provider" isDefinedBy { // <1> <2>
+                given providerState "a certain state on the provider" then { // <3>
+                    whenever receiving "a request for something" withPath "/hello" and { // <4>
                         method("POST")
                         body("{\"name\": \"harry\"}")
-                    } thenRespondWith {
+                    } thenRespondWith { // <5>
                         status(200)
                         body("{\"hello\": \"harry\"}")
                     }
