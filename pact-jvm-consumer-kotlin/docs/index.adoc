@@ -56,12 +56,18 @@ include::{exampleDir}/Junit5Example.kt[tags=ConsumerPactBuilder]
 
 === infix: Prose or CamelCase
 
+The open design decisions are the code callouts 2-5 in the following code:
+
 [source,java,indent=0,role="primary"]
 .CamelCase
 ----
 include::{exampleDir}/DesignDecisions.kt[tags=CamelCase]
 ----
 <1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
+<2> `isDefinedBy` could be `defined by` or removed completely
+<3> `then` could be removed
+<4> `and` could be removed
+<5> `thenRespondWith` could be split into `then respond with`
 
 [source,java,indent=0,role="secondary"]
 .like prose
@@ -69,6 +75,10 @@ include::{exampleDir}/DesignDecisions.kt[tags=CamelCase]
 include::{exampleDir}/DesignDecisions.kt[tags=proseLike]
 ----
 <1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
+<2> `isDefinedBy` could be `defined by` or removed completely
+<3> `then` could be removed
+<4> `and` could be removed
+<5> `thenRespondWith` could be split into `then respond with`
 
 [source,java,indent=0,role="secondary"]
 .like prose shorter
@@ -76,3 +86,9 @@ include::{exampleDir}/DesignDecisions.kt[tags=proseLike]
 include::{exampleDir}/DesignDecisions.kt[tags=proseLikeShorter]
 ----
 <1> `and1` will be named just `and` but before the decision is made, this would lead to a name collision
+<2> `isDefinedBy` could be `defined by` or removed completely
+<3> `then` could be removed
+<4> `and` could be removed
+<5> `thenRespondWith` could be split into `then respond with`
+
+Please comment on the https://github.com/usr42/pact-jvm/pull/3/files#diff-faecfe8d688a94b5a23fe936b9394f11[DesignDecisions.kt of the RFC PR]
